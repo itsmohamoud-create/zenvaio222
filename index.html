@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta name="description" content="Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you can focus on the work you love.">
   <title>Zenvaio — AI Automation Systems for Growing Businesses</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -45,7 +44,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* UTILS */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -58,7 +56,6 @@
       }
     }
 
-    /* TYPOGRAPHY DEFAULTS */
     h1, h2, h3, h4 {
       font-weight: 800;
     }
@@ -216,6 +213,42 @@
       transform: translateY(0);
     }
 
+    /* SCROLL TO TOP BUTTON */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #052535;
+      border: none;
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,200,150,0.25);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+
+    .scroll-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
     /* NAVIGATION */
     .nav {
       background: var(--navy);
@@ -236,16 +269,15 @@
     }
 
     .logo {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      color: var(--white);
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
       text-decoration: none;
     }
 
-    .logo span {
-      color: var(--teal);
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
     }
 
     .nav-center {
@@ -1206,13 +1238,22 @@
         flex-direction: column;
         text-align: center;
       }
+      .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <nav class="nav" id="nav">
     <div class="nav-left">
-      <a href="#" class="logo">ZEN<span>V</span>AIO</a>
+      <a href="#" class="logo">
+        <img src="logo.jpg" alt="Zenvaio">
+      </a>
     </div>
     <div class="nav-center">
       <div class="nav-item">Services <span class="chevron"></span>
@@ -1257,6 +1298,9 @@
     <a href="mailto:hello@zenvaio.com">Contact</a>
     <a href="mailto:hello@zenvaio.com" class="btn btn-primary" style="margin-top:20px;">Book a Call</a>
   </div>
+
+  <!-- SCROLL TO TOP BUTTON -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
 
   <main>
     <section class="hero">
@@ -1395,7 +1439,9 @@
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#" class="logo">ZEN<span>V</span>AIO</a>
+        <a href="#" class="logo">
+          <img src="logo.jpg" alt="Zenvaio">
+        </a>
         <p>AI-powered automation systems designed and managed for growing businesses.</p>
       </div>
       <div class="footer-cols">
@@ -1443,6 +1489,24 @@
       mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.remove('open');
+        });
+      });
+
+      // Scroll to top button
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          scrollTopBtn.classList.add('visible');
+        } else {
+          scrollTopBtn.classList.remove('visible');
+        }
+      });
+
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     })();
