@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you can focus on the work you love.">
+  <title>Zenvaio — AI Automation Systems for Growing Businesses</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0D1F2D;
+      --navy-deep: #052535;
+      --teal: #00C896;
+      --teal-light: #00E8AE;
+      --teal-dark: #009A72;
+      --pale-teal: #E0FAF4;
+      --teal-border: #C8EFE6;
+      --page-green: #F0FAF7;
+      --text-muted: #5A7A8A;
+      --green-dark: #057A5A;
+      --link-teal: #3A6070;
+      --white: #FFFFFF;
+      --font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: var(--font-family);
+      background-color: var(--white);
+    }
+
+    body {
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* UTILS */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    /* TYPOGRAPHY DEFAULTS */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--teal);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--navy);
+      text-align: center;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 28px;
+      }
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+      border: none;
+      background: transparent;
+      font-family: var(--font-family);
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #052535;
+      padding: 15px 34px;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.22);
+      padding: 15px 34px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .btn-nav-cta {
+      background: var(--teal);
+      color: #052535;
+      padding: 9px 20px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .btn-outline-plan {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--teal-border);
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      width: 100%;
+      display: block;
+    }
+
+    .btn-outline-plan:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .btn-teal-plan {
+      background: var(--teal);
+      color: #052535;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 700;
+      width: 100%;
+    }
+
+    .btn-teal-plan:hover {
+      opacity: 0.88;
+    }
+
+    .btn-dark-banner {
+      background: var(--navy);
+      color: var(--teal);
+      padding: 16px 36px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .btn-dark-banner:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero-badge { animation: fadeUp 0.6s 0.0s ease both; }
+    .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+    .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-btns { animation: fadeUp 0.6s 0.3s ease both; }
+    .hero-stats { animation: fadeUp 0.6s 0.4s ease both; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* NAVIGATION */
+    .nav {
+      background: var(--navy);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 60px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,200,150,0.10);
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--teal);
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: default;
+      padding: 8px 0;
+    }
+
+    .nav-item:hover {
+      color: var(--white);
+    }
+
+    .chevron {
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid rgba(255,255,255,0.7);
+      border-bottom: 1.5px solid rgba(255,255,255,0.7);
+      transform: rotate(45deg);
+      transition: transform 0.2s;
+      display: inline-block;
+      margin-left: 4px;
+    }
+
+    .nav-item:hover .chevron {
+      transform: rotate(225deg);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: var(--navy);
+      border: 1px solid rgba(0,200,150,0.15);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      min-width: 260px;
+      padding: 12px 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      transition: background 0.15s;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(0,200,150,0.08);
+    }
+
+    .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(0,200,150,0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .dropdown-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .dropdown-text span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-login {
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-login:hover {
+      color: white;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: rgba(255,255,255,0.7);
+      transition: 0.2s;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--navy);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 16px 0;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0 20px;
+      }
+      .nav-center, .nav-right {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0D1F2D 0%, #052535 100%);
+      padding: 110px 60px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -150px;
+      top: -150px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,200,150,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      left: -100px;
+      bottom: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,200,150,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-badge {
+      background: rgba(0,200,150,0.12);
+      border: 1px solid rgba(0,200,150,0.30);
+      color: var(--teal-light);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      max-width: 820px;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 .accent {
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 44px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 48px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 70px 20px 80px;
+      }
+      .hero h1 {
+        font-size: 30px;
+      }
+      .hero-stats {
+        gap: 28px;
+      }
+    }
+
+    /* LOGOS BAR */
+    .logos-bar {
+      background: var(--page-green);
+      border-top: 1px solid var(--teal-border);
+      border-bottom: 1px solid var(--teal-border);
+      padding: 20px 60px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .logos-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .logo-pill {
+      background: var(--teal-border);
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 99px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .logos-bar {
+        padding: 16px 20px;
+      }
+    }
+
+    /* SERVICES */
+    .services {
+      background: var(--white);
+      padding: 90px 60px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--teal-border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #00C896, #009A72);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 12px 48px rgba(0,200,150,0.12);
+      border-color: rgba(0,200,150,0.3);
+      transform: translateY(-3px);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      background: var(--pale-teal);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .card-title-tags h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      background: var(--pale-teal);
+      padding: 3px 10px;
+      border-radius: 99px;
+    }
+
+    .card-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-list li {
+      font-size: 13px;
+      color: var(--link-teal);
+      line-height: 1.5;
+      padding-left: 22px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .bullet-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .services {
+        padding: 60px 20px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* FEATURE STRIP */
+    .feature-strip {
+      background: var(--navy);
+      padding: 60px;
+    }
+
+    .features-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .feature-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .feature-item p {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.40);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .feature-strip {
+        padding: 48px 20px;
+      }
+      .features-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+      background: var(--page-green);
+      padding: 90px 60px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      left: 15%;
+      width: 70%;
+      height: 2px;
+      background: linear-gradient(90deg, #C8EFE6, #00C896, #C8EFE6);
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--teal);
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--teal-border);
+      margin: 0 auto 20px;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .step p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .how-it-works {
+        padding: 60px 20px;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid::before {
+        display: none;
+      }
+    }
+
+    /* PRICING */
+    .pricing {
+      background: var(--white);
+      padding: 90px 60px;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .plan-card {
+      border: 1px solid var(--teal-border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      background: var(--white);
+      transition: all 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,200,150,0.10);
+    }
+
+    .plan-card.featured {
+      background: var(--navy);
+      border-color: var(--teal);
+      color: var(--white);
+      transform: scale(1.03);
+    }
+
+    .plan-card.featured:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .plan-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .plan-name {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .plan-price sup {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .plan-price sub {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .plan-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .plan-divider {
+      border: none;
+      border-top: 1px solid var(--teal-border);
+      margin: 20px 0;
+    }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .plan-features li {
+      font-size: 13px;
+      padding-left: 22px;
+      position: relative;
+      margin-bottom: 10px;
+      color: var(--link-teal);
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .featured .plan-desc,
+    .featured .plan-features li {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .featured .plan-price {
+      color: var(--teal);
+    }
+
+    @media (max-width: 768px) {
+      .pricing {
+        padding: 60px 20px;
+      }
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+      .plan-card.featured {
+        transform: none;
+      }
+    }
+
+    /* RESULTS */
+    .results {
+      background: var(--page-green);
+      padding: 90px 60px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--teal-border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: 0.25s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,200,150,0.08);
+    }
+
+    .stars {
+      color: var(--teal);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .quote {
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.7;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--pale-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .author-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .author-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 56px auto 0;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border: 1px solid var(--teal-border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--teal);
+      letter-spacing: -1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .results {
+        padding: 60px 20px;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, #00C896 0%, #009A72 100%);
+      padding: 90px 60px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--navy);
+      max-width: 680px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .cta-banner p {
+      font-size: 16px;
+      color: rgba(0,0,0,0.55);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .cta-banner {
+        padding: 60px 20px;
+      }
+      .cta-banner h2 {
+        font-size: 24px;
+      }
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy);
+      padding: 48px 60px 32px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.40);
+      max-width: 240px;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .footer-cols {
+      display: flex;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      margin-left: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        padding: 40px 20px 24px;
+      }
+      .footer-top {
+        flex-direction: column;
+      }
+      .footer-cols {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-left">
+      <a href="#" class="logo">ZEN<span>V</span>AIO</a>
+    </div>
+    <div class="nav-center">
+      <div class="nav-item">Services <span class="chevron"></span>
+        <div class="dropdown">
+          <a href="#services" class="dropdown-item"><span class="dropdown-icon">🤖</span><div class="dropdown-text"><strong>AI Front Desk</strong><span>24/7 AI voice & chat agent</span></div></a>
+          <a href="#services" class="dropdown-item"><span class="dropdown-icon">⚡</span><div class="dropdown-text"><strong>Instant Lead Response</strong><span>Contact leads within 60 seconds</span></div></a>
+          <a href="#services" class="dropdown-item"><span class="dropdown-icon">📅</span><div class="dropdown-text"><strong>Appointment Booking</strong><span>End-to-end scheduling automation</span></div></a>
+          <a href="#services" class="dropdown-item"><span class="dropdown-icon">🔄</span><div class="dropdown-text"><strong>Client Reactivation</strong><span>Re-engage dormant clients automatically</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">How It Works <span class="chevron"></span>
+        <div class="dropdown">
+          <a href="#how-it-works" class="dropdown-item"><span class="dropdown-icon">📞</span><div class="dropdown-text"><strong>Strategy Call</strong><span>Map your current flow & gaps</span></div></a>
+          <a href="#how-it-works" class="dropdown-item"><span class="dropdown-icon">🔧</span><div class="dropdown-text"><strong>We Build & Test</strong><span>Full system configured in 14 days</span></div></a>
+          <a href="#how-it-works" class="dropdown-item"><span class="dropdown-icon">🚀</span><div class="dropdown-text"><strong>Go Live & Scale</strong><span>Monitor, optimise & grow</span></div></a>
+        </div>
+      </div>
+      <div class="nav-item">Pricing <span class="chevron"></span>
+        <div class="dropdown">
+          <a href="#pricing" class="dropdown-item"><span class="dropdown-icon">🌱</span><div class="dropdown-text"><strong>Starter</strong><span>AI Front Desk + Booking</span></div></a>
+          <a href="#pricing" class="dropdown-item"><span class="dropdown-icon">📈</span><div class="dropdown-text"><strong>Growth</strong><span>Everything + Instant Lead Response</span></div></a>
+          <a href="#pricing" class="dropdown-item"><span class="dropdown-icon">💎</span><div class="dropdown-text"><strong>Full Stack</strong><span>Complete automation suite</span></div></a>
+        </div>
+      </div>
+      <a href="#results" class="nav-item" style="cursor:pointer;">Results</a>
+      <a href="mailto:hello@zenvaio.com" class="nav-item" style="cursor:pointer;">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-login">Log in</a>
+      <a href="mailto:hello@zenvaio.com" class="btn btn-nav-cta">Book a Call</a>
+    </div>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu" style="background:none;border:none;color:white;font-size:24px;align-self:flex-end;">✕</button>
+    <a href="#services">Services</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#results">Results</a>
+    <a href="mailto:hello@zenvaio.com">Contact</a>
+    <a href="mailto:hello@zenvaio.com" class="btn btn-primary" style="margin-top:20px;">Book a Call</a>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge"><span class="pulse-dot"></span> DONE-FOR-YOU AI AUTOMATION SYSTEMS</div>
+      <h1>Grow Your Business Without<br><span class="accent">Growing Your Workload.</span></h1>
+      <p class="hero-sub">Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you can focus on the work you love.</p>
+      <div class="hero-btns">
+        <a href="mailto:hello@zenvaio.com" class="btn btn-primary">Book a Free Strategy Call</a>
+        <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-number">60s</div><div class="stat-label">Lead Response</div></div>
+        <div class="stat-item"><div class="stat-number">14</div><div class="stat-label">Days to Go Live</div></div>
+        <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">AI Coverage</div></div>
+        <div class="stat-item"><div class="stat-number">10–25%</div><div class="stat-label">Lapsed Clients Recovered</div></div>
+      </div>
+    </section>
+
+    <div class="logos-bar">
+      <span class="logos-label">POWERED BY</span>
+      <span class="logo-pill">Retell AI</span>
+      <span class="logo-pill">GoHighLevel</span>
+      <span class="logo-pill">Make.com</span>
+      <span class="logo-pill">Twilio</span>
+      <span class="logo-pill">Cal.com</span>
+      <span class="logo-pill">OpenAI GPT-4o</span>
+    </div>
+
+    <section id="services" class="services">
+      <div class="reveal"><div class="section-label">OUR SERVICES</div></div>
+      <div class="reveal"><h2 class="section-title">Four Systems. Zero Manual Work.</h2></div>
+      <div class="reveal"><p class="section-sub">Every system is built, tested, and managed by Zenvaio — you just show up to the calls.</p></div>
+      <div class="cards-grid">
+        <div class="service-card reveal">
+          <div class="card-header"><div class="icon-box">🤖</div><div class="card-title-tags"><h3>AI Front Desk</h3><div class="tags"><span class="tag">STARTER</span><span class="tag">GROWTH</span><span class="tag">FULL STACK</span></div></div></div>
+          <p class="card-body">Replaces your front desk with a 24/7 AI voice and chat agent that answers calls, handles FAQs, qualifies leads, and logs everything to your CRM automatically.</p>
+          <ul class="bullet-list"><li>Custom AI voice agent (branded persona)</li><li>Handles inbound calls after hours & peak times</li><li>AI chat widget for your website</li><li>Every call logged to CRM with transcript</li><li>Instant SMS/email alert to business owner</li></ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="card-header"><div class="icon-box">⚡</div><div class="card-title-tags"><h3>Instant Lead Response</h3><div class="tags"><span class="tag">GROWTH</span><span class="tag">FULL STACK</span></div></div></div>
+          <p class="card-body">Every new lead — from ads, forms, or missed calls — is contacted within 60 seconds via SMS and AI voice call. Eliminates lead decay and beats your competition.</p>
+          <ul class="bullet-list"><li>Connects to Facebook Ads, Google Ads, forms</li><li>Personalised SMS within 60 seconds of entry</li><li>Outbound AI voice call if no response in 5 min</li><li>5-email nurture sequence triggered automatically</li><li>Hot lead scoring & instant sales owner alert</li></ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="card-header"><div class="icon-box">📅</div><div class="card-title-tags"><h3>Appointment Booking</h3><div class="tags"><span class="tag">STARTER</span><span class="tag">GROWTH</span><span class="tag">FULL STACK</span></div></div></div>
+          <p class="card-body">End-to-end automation of your entire scheduling process — from first contact to confirmed booking, reminders, no-show recovery, and post-appointment follow-up.</p>
+          <ul class="bullet-list"><li>AI booking agent via voice or chat</li><li>Automated reminders at 48hr & 2hr before</li><li>No-show recovery SMS with one-tap reschedule</li><li>Post-appointment review request (Google)</li><li>Syncs with Google Calendar & Outlook</li></ul>
+        </div>
+        <div class="service-card reveal">
+          <div class="card-header"><div class="icon-box">🔄</div><div class="card-title-tags"><h3>Dormant Client Reactivation</h3><div class="tags"><span class="tag">FULL STACK</span><span class="tag">ADD-ON</span></div></div></div>
+          <p class="card-body">Automatically re-engages past clients who have gone quiet — turning cold contacts into active revenue. Typically recovers 10–25% of lapsed clients with zero manual outreach.</p>
+          <ul class="bullet-list"><li>Segments client list by recency & spend tier</li><li>Personalised email & SMS reactivation sequences</li><li>Outbound AI voice calls for high-value clients</li><li>Dynamic offer engine (discounts, bonuses)</li><li>Re-entry routing back into your pipeline</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-strip">
+      <div class="features-inner">
+        <div class="feature-item reveal"><span class="feature-emoji">🎯</span><h4>Built for Your Business</h4><p>Every automation is custom-configured to match your industry, workflow, and goals.</p></div>
+        <div class="feature-item reveal"><span class="feature-emoji">🔒</span><h4>Fully Managed</h4><p>We monitor, optimise, and maintain your systems — no technical knowledge required.</p></div>
+        <div class="feature-item reveal"><span class="feature-emoji">⚙️</span><h4>Seamless Integrations</h4><p>Connects with your existing CRM, calendar, and marketing tools out of the box.</p></div>
+        <div class="feature-item reveal"><span class="feature-emoji">📊</span><h4>Measurable ROI</h4><p>Track leads recovered, bookings made, and revenue generated — all in one dashboard.</p></div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+      <div class="reveal"><div class="section-label">THE PROCESS</div></div>
+      <div class="reveal"><h2 class="section-title">Up and Running in 14 Days</h2></div>
+      <div class="reveal"><p class="section-sub">We handle the entire build — you don't need to touch a single tool.</p></div>
+      <div class="steps-grid">
+        <div class="step reveal"><div class="step-circle">1</div><h3>Strategy Call</h3><p>We map your current lead and booking flow, identify the gaps, and design your custom automation system.</p></div>
+        <div class="step reveal"><div class="step-circle">2</div><h3>We Build & Test</h3><p>Zenvaio configures your AI voice agent, CRM integrations, and automation workflows — all fully tested before launch.</p></div>
+        <div class="step reveal"><div class="step-circle">3</div><h3>Go Live & Scale</h3><p>Your system launches. We monitor performance, optimise monthly, and scale as your business grows.</p></div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <div class="reveal"><div class="section-label">PRICING</div></div>
+      <div class="reveal"><h2 class="section-title">Simple, Transparent Plans</h2></div>
+      <div class="reveal"><p class="section-sub">Choose the system that fits your business today. Scale up anytime.</p></div>
+      <div class="plans-grid">
+        <div class="plan-card reveal">
+          <div class="plan-label">STARTER</div>
+          <div class="plan-name">Foundation</div>
+          <div class="plan-price"><sup>$</sup>997<sub>/mo</sub></div>
+          <p class="plan-desc">Perfect for businesses ready to automate their front desk and booking system.</p>
+          <hr class="plan-divider">
+          <ul class="plan-features"><li>AI Front Desk (voice + chat)</li><li>Appointment Booking Automation</li><li>CRM integration & call logging</li><li>Automated reminders & no-show recovery</li><li>Monthly performance review</li></ul>
+          <a href="mailto:hello@zenvaio.com" class="btn btn-outline-plan">Get Started</a>
+        </div>
+        <div class="plan-card featured reveal">
+          <div class="plan-label">MOST POPULAR</div>
+          <div class="plan-name">Growth</div>
+          <div class="plan-price"><sup>$</sup>1,997<sub>/mo</sub></div>
+          <p class="plan-desc">For businesses ready to dominate lead response and fill their calendar automatically.</p>
+          <hr class="plan-divider">
+          <ul class="plan-features"><li>Everything in Starter</li><li>Instant Lead Response (60-second SMS + call)</li><li>5-email nurture sequences</li><li>Hot lead scoring & owner alerts</li><li>Facebook & Google Ads integration</li><li>Weekly performance reporting</li></ul>
+          <a href="mailto:hello@zenvaio.com" class="btn btn-teal-plan">Book Strategy Call</a>
+        </div>
+        <div class="plan-card reveal">
+          <div class="plan-label">FULL STACK</div>
+          <div class="plan-name">Complete</div>
+          <div class="plan-price"><sup>$</sup>2,997<sub>/mo</sub></div>
+          <p class="plan-desc">The complete automation suite — including client reactivation to unlock hidden revenue.</p>
+          <hr class="plan-divider">
+          <ul class="plan-features"><li>Everything in Growth</li><li>Dormant Client Reactivation</li><li>Dynamic offer engine</li><li>Outbound AI voice for high-value clients</li><li>Dedicated account manager</li><li>Priority support & custom build requests</li></ul>
+          <a href="mailto:hello@zenvaio.com" class="btn btn-outline-plan">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="results">
+      <div class="reveal"><div class="section-label">RESULTS</div></div>
+      <div class="reveal"><h2 class="section-title">Businesses Growing With Zenvaio</h2></div>
+      <div class="reveal"><p class="section-sub">Real outcomes from real business owners who let AI handle the workload.</p></div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal"><div class="stars">★★★★★</div><p class="quote">"We went from missing half our leads to booking 3x more appointments in the first month. The AI front desk answers calls we couldn't — at 2am, on weekends, all of it."</p><div class="author"><div class="avatar">👨‍💼</div><div><div class="author-name">Marcus T.</div><div class="author-role">Dental Practice Owner</div></div></div></div>
+        <div class="testimonial-card reveal"><div class="stars">★★★★★</div><p class="quote">"The 60-second lead response alone changed everything. We were losing clients to competitors because we called back too late. Not anymore. Worth every penny."</p><div class="author"><div class="avatar">👩‍💼</div><div><div class="author-name">Sarah K.</div><div class="author-role">Real Estate Agency</div></div></div></div>
+        <div class="testimonial-card reveal"><div class="stars">★★★★★</div><p class="quote">"The reactivation campaign brought back 18 clients we thought were gone forever. That's over £24k in recovered revenue in 6 weeks. Zenvaio paid for itself 8x over."</p><div class="author"><div class="avatar">🧔</div><div><div class="author-name">James O.</div><div class="author-role">Fitness Studio Owner</div></div></div></div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-card reveal"><span class="metric-number">3×</span><span class="metric-label">More appointments booked</span></div>
+        <div class="metric-card reveal"><span class="metric-number">60s</span><span class="metric-label">Average lead response time</span></div>
+        <div class="metric-card reveal"><span class="metric-number">18%</span><span class="metric-label">Average lapsed clients recovered</span></div>
+        <div class="metric-card reveal"><span class="metric-number">14d</span><span class="metric-label">From strategy call to live system</span></div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="reveal"><h2>Wondering What This Could Look Like for Your Business?</h2></div>
+      <div class="reveal"><p>Book a free 30-minute strategy call and we'll map out a custom automation system built around your specific needs.</p></div>
+      <div class="reveal"><a href="mailto:hello@zenvaio.com" class="btn btn-dark-banner">Book Your Free Call →</a></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">ZEN<span>V</span>AIO</a>
+        <p>AI-powered automation systems designed and managed for growing businesses.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col"><h4>SERVICES</h4><a href="#services">AI Front Desk</a><a href="#services">Instant Lead Response</a><a href="#services">Appointment Booking</a><a href="#services">Client Reactivation</a></div>
+        <div class="footer-col"><h4>COMPANY</h4><a href="#how-it-works">How It Works</a><a href="#pricing">Pricing</a><a href="#results">Results</a><a href="mailto:hello@zenvaio.com">Contact</a></div>
+        <div class="footer-col"><h4>CONTACT</h4><a href="mailto:hello@zenvaio.com">hello@zenvaio.com</a><a href="https://zenvaio.com">zenvaio.com</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Zenvaio. All rights reserved.</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="mailto:hello@zenvaio.com">hello@zenvaio.com</a></span>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Scroll reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      reveals.forEach(el => observer.observe(el));
+
+      // Mobile menu toggle
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+
+      hamburger.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+      });
+
+      closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
