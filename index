@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenvaio — AI Automation Systems for Growing Businesses</title>
+<meta name="description" content="Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you can focus on the work you love.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1F2D;--navy-deep:#052535;--teal:#00C896;--teal-light:#00E8AE;--teal-dark:#009A72;--pale-teal:#E0FAF4;--teal-border:#C8EFE6;--page-green:#F0FAF7;--text-muted:#5A7A8A;--green-dark:#057A5A;--link-teal:#3A6070;--white:#FFFFFF;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',Arial,sans-serif;color:var(--text-muted);background:var(--white);overflow-x:hidden}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ANNOUNCEMENT BAR */
+.announcement-bar{background:var(--navy-deep);border-bottom:1px solid rgba(0,200,150,0.20);padding:9px 20px;text-align:center;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;position:relative;z-index:1001}
+.announcement-bar .ann-stars{color:#FFD700;font-size:13px;letter-spacing:1px}
+.announcement-bar .ann-text{font-size:12px;font-weight:600;color:rgba(255,255,255,0.78);letter-spacing:0.3px}
+.announcement-bar .ann-sep{color:rgba(255,255,255,0.25);font-size:12px}
+.announcement-bar a{font-size:12px;font-weight:700;color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(0,200,150,0.4);transition:border-color .2s}
+.announcement-bar a:hover{border-color:var(--teal)}
+
+/* NAV */
+nav{background:var(--navy);height:64px;padding:0 60px;position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(0,200,150,0.10);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-img{height:36px;width:auto;display:block}
+.nav-logo-wordmark{font-size:20px;font-weight:800;letter-spacing:3px;color:var(--white);text-transform:uppercase}
+.nav-logo-wordmark span{color:var(--teal)}
+.nav-center{display:flex;align-items:center;gap:32px}
+.nav-item{position:relative}
+.nav-link{font-size:14px;font-weight:500;color:rgba(255,255,255,0.70);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 0;transition:color .2s;cursor:pointer}
+.nav-link:hover{color:var(--white)}
+.nav-link .chevron{width:6px;height:6px;border-right:1.5px solid rgba(255,255,255,0.5);border-bottom:1.5px solid rgba(255,255,255,0.5);transform:rotate(45deg);transition:transform .2s;display:inline-block}
+.nav-item:hover .chevron{transform:rotate(225deg);margin-top:2px}
+.dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--navy);border:1px solid rgba(0,200,150,0.15);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4);padding:16px;min-width:260px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:1001}
+.nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dropdown-item{display:flex;align-items:flex-start;gap:12px;padding:10px;border-radius:8px;transition:background .2s;text-decoration:none}
+.dropdown-item:hover{background:rgba(0,200,150,0.08)}
+.dropdown-icon{width:32px;height:32px;background:rgba(0,200,150,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.dropdown-text h4{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
+.dropdown-text p{font-size:11px;color:rgba(255,255,255,0.50);line-height:1.4}
+.nav-right{display:flex;align-items:center;gap:20px}
+.nav-cta{background:var(--teal);color:var(--navy-deep);padding:9px 20px;border-radius:7px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .2s,transform .2s;white-space:nowrap}
+.nav-cta:hover{opacity:0.88;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1002;background:none;border:none}
+.hamburger span{width:24px;height:2px;background:rgba(255,255,255,0.7);transition:.3s;display:block}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--navy);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-nav.active{opacity:1;pointer-events:all}
+.mobile-nav a{color:var(--white);font-size:18px;font-weight:600;text-decoration:none}
+.mobile-nav .close-btn{position:absolute;top:20px;right:20px;font-size:32px;color:var(--white);cursor:pointer;background:none;border:none}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0D1F2D 0%,#052535 100%);padding:110px 60px 120px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,200,150,0.07) 0%,transparent 70%);right:-150px;top:-150px;pointer-events:none}
+.hero::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(0,200,150,0.05) 0%,transparent 70%);left:-100px;bottom:-100px;pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,150,0.12);border:1px solid rgba(0,200,150,0.30);color:var(--teal-light);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:32px;animation:fadeUp .6s 0s ease both}
+.pulse-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+.hero h1{font-size:54px;font-weight:800;color:var(--white);line-height:1.15;letter-spacing:-1px;max-width:820px;margin:0 auto 20px;animation:fadeUp .6s .1s ease both}
+.hero h1 .accent{color:var(--teal)}
+.hero-sub{font-size:17px;font-weight:400;color:rgba(255,255,255,0.52);line-height:1.8;max-width:560px;margin:0 auto 44px;animation:fadeUp .6s .2s ease both}
+.hero-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;animation:fadeUp .6s .3s ease both}
+.btn-primary{background:var(--teal);color:var(--navy-deep);padding:15px 34px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s}
+.btn-primary:hover{opacity:0.88;transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.22);padding:15px 34px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block;transition:background .2s,border-color .2s}
+.btn-secondary:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4)}
+.hero-stats{margin-top:64px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:center;gap:48px;flex-wrap:wrap;animation:fadeUp .6s .4s ease both}
+.stat-item{text-align:center}
+.stat-number{font-size:32px;font-weight:800;color:var(--teal);letter-spacing:-1px}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px;font-weight:500}
+
+/* TRUSTED BAR */
+.trusted-bar{background:var(--page-green);border-top:1px solid var(--teal-border);border-bottom:1px solid var(--teal-border);padding:20px 60px;text-align:center}
+.trusted-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.stars-row{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:8px}
+.gold-star{color:#FFD700;font-size:18px}
+.trusted-text{font-size:14px;font-weight:600;color:var(--green-dark)}
+
+/* LOGO TICKER */
+.ticker-section{background:var(--page-green);padding:32px 0;border-bottom:1px solid var(--teal-border);overflow:hidden}
+.ticker-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-align:center;margin-bottom:20px;padding:0 60px}
+.ticker-track{display:flex;width:100%;overflow:hidden}
+.ticker-row{display:flex;animation:ticker 40s linear infinite;width:max-content}
+.ticker-row-2{animation-duration:52s;animation-direction:reverse;margin-top:12px}
+.ticker-item{display:flex;align-items:center;gap:8px;background:var(--white);padding:10px 18px;border-radius:10px;border:1px solid var(--teal-border);margin:0 8px;white-space:nowrap;filter:grayscale(100%);opacity:0.6;transition:filter .3s,opacity .3s;cursor:default;flex-shrink:0}
+.ticker-item:hover{filter:grayscale(0%);opacity:1}
+.ticker-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--white);flex-shrink:0}
+.ticker-name{font-size:12px;font-weight:700;color:var(--navy)}
+
+/* REVENUE ALERT */
+.revenue-alert{background:linear-gradient(135deg,#fff8f0 0%,#fff0e0 100%);padding:60px;text-align:center;border-top:3px solid var(--teal)}
+.revenue-alert h2{font-size:34px;font-weight:800;color:var(--navy);letter-spacing:-0.5px;margin-bottom:12px}
+.revenue-alert p{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:540px;margin:0 auto 28px}
+.revenue-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin:32px 0}
+.revenue-stat{text-align:center}
+.revenue-stat-number{font-size:42px;font-weight:800;color:var(--teal);letter-spacing:-1px}
+.revenue-stat-label{font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:500}
+
+/* ZEN DEMO */
+.ai-demo{background:var(--navy);padding:90px 60px;text-align:center;position:relative;overflow:hidden}
+.ai-demo::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,200,150,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.ai-demo-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px}
+.ai-demo h2{font-size:34px;font-weight:800;color:var(--white);letter-spacing:-0.5px;margin-bottom:12px}
+.ai-demo-sub{font-size:16px;color:rgba(255,255,255,0.52);line-height:1.7;max-width:540px;margin:0 auto 48px}
+.zen-orb-wrapper{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:2}
+.zen-orb-label{font-size:13px;color:rgba(255,255,255,0.5);margin-top:8px}
+.zen-orb-hint{font-size:12px;color:rgba(255,255,255,0.30);margin-top:4px}
+
+/* SECTION SHARED */
+.section-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;text-align:center;margin-bottom:12px}
+.section-title{font-size:34px;font-weight:800;color:var(--navy);text-align:center;letter-spacing:-0.5px;margin-bottom:12px}
+.section-sub{font-size:16px;font-weight:400;color:var(--text-muted);line-height:1.7;text-align:center;max-width:540px;margin:0 auto 48px}
+
+/* SERVICES */
+.services{background:var(--white);padding:90px 60px}
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:980px;margin:0 auto}
+.service-card{background:var(--white);border:1px solid var(--teal-border);border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;transition:box-shadow .25s,border-color .25s,transform .25s}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-dark));opacity:0;transition:opacity .25s}
+.service-card:hover{box-shadow:0 12px 48px rgba(0,200,150,0.12);border-color:rgba(0,200,150,0.3);transform:translateY(-3px)}
+.service-card:hover::before{opacity:1}
+.card-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
+.card-icon{width:50px;height:50px;background:var(--pale-teal);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.card-title-wrap h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.card-tag{font-size:9px;font-weight:700;color:var(--green-dark);background:var(--pale-teal);padding:3px 10px;border-radius:99px;letter-spacing:1px;text-transform:uppercase}
+.card-body{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:16px}
+.card-bullets{list-style:none;padding:0}
+.card-bullets li{padding-left:22px;position:relative;font-size:13px;color:var(--link-teal);line-height:1.5;margin-bottom:6px}
+.card-bullets li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
+
+/* ADD-ON CARDS */
+.addons-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:980px;margin:32px auto 0}
+.addon-card{border:1.5px dashed var(--teal-border);border-radius:14px;padding:24px 24px;background:var(--page-green);display:flex;align-items:flex-start;gap:16px;transition:border-color .2s,box-shadow .2s}
+.addon-card:hover{border-color:var(--teal);box-shadow:0 6px 24px rgba(0,200,150,0.08)}
+.addon-icon{width:44px;height:44px;background:var(--white);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid var(--teal-border)}
+.addon-body h4{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.addon-body p{font-size:13px;color:var(--text-muted);line-height:1.6}
+.addon-badge{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:rgba(0,200,150,0.12);color:var(--teal-dark);padding:3px 10px;border-radius:99px;margin-bottom:8px;border:1px solid rgba(0,200,150,0.2)}
+
+/* FEATURE STRIP */
+.feature-strip{background:var(--navy);padding:60px}
+.features-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1000px;margin:0 auto}
+.feature-item{text-align:center}
+.feature-emoji{font-size:28px;margin-bottom:12px;display:block}
+.feature-item h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:8px}
+.feature-item p{font-size:12.5px;color:rgba(255,255,255,0.40);line-height:1.6}
+
+/* HOW IT WORKS */
+.how-it-works{background:var(--page-green);padding:90px 60px}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:860px;margin:0 auto;position:relative}
+.steps-grid::before{content:'';position:absolute;top:26px;left:16.66%;right:16.66%;height:2px;background:linear-gradient(90deg,var(--teal-border),var(--teal),var(--teal-border));z-index:0}
+.step{text-align:center;position:relative;z-index:2}
+.step-circle{width:52px;height:52px;border-radius:50%;background:var(--navy);color:var(--teal);font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;border:3px solid var(--teal-border)}
+.step h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.step p{font-size:13.5px;color:var(--text-muted);line-height:1.6}
+
+/* HOW ZEN WORKS */
+.zen-works{background:var(--white);padding:90px 60px}
+.zen-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.zen-step{text-align:center;padding:24px}
+.zen-step-number{width:48px;height:48px;background:var(--pale-teal);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;margin:0 auto 16px}
+.zen-step h4{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.zen-step p{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* INDUSTRY SELECTOR */
+.industry-selector{background:var(--page-green);padding:90px 60px}
+.industry-tabs{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.industry-tab{padding:10px 20px;border-radius:99px;font-size:13px;font-weight:600;border:1px solid var(--teal-border);background:var(--white);color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:inherit}
+.industry-tab:hover,.industry-tab.active{background:var(--teal);color:var(--navy-deep);border-color:var(--teal)}
+.industry-content{max-width:600px;margin:0 auto;background:var(--white);border:1px solid var(--teal-border);border-radius:16px;padding:40px}
+.industry-content h3{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px;text-align:center}
+.industry-content .selected-industry{text-align:center;color:var(--teal);font-size:13px;font-weight:700;margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.form-group label span{color:var(--teal)}
+.form-group input{width:100%;padding:12px 16px;border:1px solid var(--teal-border);border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s}
+.form-group input:focus{outline:none;border-color:var(--teal)}
+.form-submit{width:100%;background:var(--teal);color:var(--navy-deep);padding:14px;border-radius:8px;font-size:15px;font-weight:700;border:none;cursor:pointer;margin-top:8px;transition:opacity .2s;font-family:inherit}
+.form-submit:hover{opacity:0.88}
+.form-disclaimer{font-size:11px;color:var(--text-muted);text-align:center;margin-top:12px}
+
+/* RESULTS */
+.results{background:var(--white);padding:90px 60px}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto 56px}
+.testimonial-card{background:var(--white);border:1px solid var(--teal-border);border-radius:16px;padding:28px;transition:transform .25s,box-shadow .25s}
+.testimonial-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,200,150,0.08)}
+.stars{color:var(--teal);font-size:14px;letter-spacing:2px;margin-bottom:14px}
+.testimonial-quote{font-size:14px;color:var(--navy);line-height:1.7;font-weight:500;font-style:italic;margin-bottom:20px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:40px;height:40px;border-radius:50%;background:var(--pale-teal);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.author-name{font-size:13px;font-weight:700;color:var(--navy)}
+.author-role{font-size:12px;color:var(--text-muted)}
+.rotating-testimonials{max-width:800px;margin:0 auto 56px;position:relative;min-height:220px}
+.rotating-card{background:var(--white);border:1px solid var(--teal-border);border-radius:16px;padding:32px;text-align:center;position:absolute;width:100%;opacity:0;transition:opacity .6s ease}
+.rotating-card.active{opacity:1;position:relative}
+.rotating-card .stars{margin-bottom:16px}
+.rotating-card .testimonial-quote{font-size:16px;max-width:600px;margin:0 auto 20px}
+.rotating-card .testimonial-author{justify-content:center}
+.rotating-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.rotating-dot{width:8px;height:8px;border-radius:50%;background:var(--teal-border);cursor:pointer;transition:background .3s}
+.rotating-dot.active{background:var(--teal)}
+.results-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1000px;margin:0 auto}
+.metric-card{background:var(--white);border:1px solid var(--teal-border);border-radius:12px;padding:28px 20px;text-align:center}
+.metric-number{font-size:36px;font-weight:800;color:var(--teal);letter-spacing:-1px;display:block;margin-bottom:8px}
+.metric-label{font-size:13px;color:var(--text-muted);line-height:1.4}
+
+/* ROI CALCULATOR */
+.roi-calculator{background:var(--page-green);padding:90px 60px}
+.roi-container{max-width:900px;margin:0 auto}
+.roi-header{text-align:center;margin-bottom:48px}
+.roi-header h2{font-size:34px;font-weight:800;color:var(--navy);letter-spacing:-0.5px;margin-bottom:12px}
+.roi-header p{font-size:16px;color:var(--text-muted);line-height:1.7}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.roi-inputs h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:24px}
+.roi-field{margin-bottom:24px}
+.roi-field label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.roi-field input[type="range"]{width:100%;margin-bottom:8px;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--teal-border);outline:none}
+.roi-field input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--teal);cursor:pointer;border:3px solid var(--white);box-shadow:0 2px 8px rgba(0,200,150,0.3)}
+.roi-value{display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted)}
+.roi-value .current{font-size:18px;font-weight:800;color:var(--navy)}
+.roi-results{background:var(--navy);border-radius:16px;padding:32px;color:var(--white)}
+.roi-results h3{font-size:15px;font-weight:800;margin-bottom:24px;color:var(--teal)}
+.roi-result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.roi-result-row:last-child{border-bottom:none}
+.roi-result-label{font-size:13px;color:rgba(255,255,255,0.6)}
+.roi-result-value{font-size:18px;font-weight:800;color:var(--white)}
+.roi-result-value.highlight{color:var(--teal)}
+.roi-result-value.large{font-size:28px}
+.roi-yearly{background:rgba(0,200,150,0.15);border-radius:12px;padding:20px;margin-top:20px;text-align:center}
+.roi-yearly-label{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:4px}
+.roi-yearly-value{font-size:32px;font-weight:800;color:var(--teal)}
+
+/* ABOUT */
+.about{background:var(--white);padding:90px 60px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1000px;margin:0 auto;align-items:center}
+.about-text h3{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:16px}
+.about-text p{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:16px}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.about-value{background:var(--page-green);padding:16px;border-radius:12px}
+.about-value h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.about-value p{font-size:12px;color:var(--text-muted);margin:0}
+.about-founder{background:var(--navy);border-radius:16px;padding:40px;color:var(--white)}
+.founder-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.founder-avatar{width:64px;height:64px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--navy-deep);flex-shrink:0}
+.founder-info h4{font-size:18px;font-weight:800}
+.founder-info p{font-size:13px;color:var(--teal)}
+.founder-quote{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.8);font-style:italic}
+
+/* MAP */
+.map-section{background:var(--page-green);padding:0}
+.map-container{width:100%;height:400px;position:relative}
+.map-container iframe{width:100%;height:100%;border:none;filter:grayscale(20%)}
+.map-overlay{position:absolute;bottom:24px;left:24px;background:var(--white);padding:20px 24px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:280px}
+.map-overlay h4{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.map-overlay p{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+/* FAQ */
+.faq{background:var(--white);padding:90px 60px}
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--teal-border);padding:20px 0}
+.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:700;color:var(--navy)}
+.faq-question::after{content:'+';font-size:20px;color:var(--teal);transition:transform .3s}
+.faq-item.open .faq-question::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-answer{max-height:200px}
+.faq-answer p{font-size:14px;color:var(--text-muted);line-height:1.7;padding-top:12px}
+
+/* CTA BANNER */
+.cta-banner{background:linear-gradient(135deg,#00C896 0%,#009A72 100%);padding:90px 60px;text-align:center}
+.cta-banner h2{font-size:36px;font-weight:800;color:var(--navy-deep);max-width:680px;margin:0 auto 16px;letter-spacing:-0.5px;line-height:1.2}
+.cta-banner p{font-size:16px;color:rgba(0,0,0,0.55);max-width:500px;margin:0 auto 36px;line-height:1.7}
+.btn-dark{background:var(--navy);color:var(--teal);padding:16px 36px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s}
+.btn-dark:hover{opacity:0.88;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:48px 60px 32px}
+.footer-top{display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;margin-bottom:32px}
+.footer-brand{max-width:240px}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;text-decoration:none}
+.footer-logo-img{height:32px;width:auto}
+.footer-wordmark{font-size:18px;font-weight:800;letter-spacing:3px;color:var(--white);text-transform:uppercase}
+.footer-wordmark span{color:var(--teal)}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.40);line-height:1.7}
+.footer-contact-info{margin-top:16px}
+.footer-contact-info p{font-size:13px;color:rgba(255,255,255,0.50);margin-bottom:4px}
+.footer-contact-info a{color:var(--teal);text-decoration:none}
+.footer-cols{display:flex;gap:56px;flex-wrap:wrap}
+.footer-col h4{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,0.35)}
+.footer-bottom-links{display:flex;gap:24px}
+.footer-bottom-links a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color .2s}
+.footer-bottom-links a:hover{color:var(--white)}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:80px;right:24px;width:48px;height:48px;background:var(--teal);color:var(--navy-deep);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;border:none;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:998;box-shadow:0 4px 16px rgba(0,200,150,0.3)}
+.scroll-top.visible{opacity:1;pointer-events:all}
+.scroll-top:hover{transform:translateY(-3px)}
+
+/* MOBILE STICKY CTA */
+.mobile-sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:997;background:var(--teal);padding:14px 20px;text-align:center;box-shadow:0 -4px 24px rgba(0,0,0,0.2)}
+.mobile-sticky-cta a{color:var(--navy-deep);font-size:15px;font-weight:700;text-decoration:none}
+.mobile-sticky-cta.show{display:block}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-center,.nav-right{display:none}
+  .hamburger{display:flex}
+  .hero{padding:70px 20px 80px}
+  .hero h1{font-size:30px}
+  .hero-stats{gap:28px}
+  .ticker-section{padding:20px 0}
+  .revenue-alert{padding:60px 20px}
+  .ai-demo{padding:60px 20px}
+  .ai-demo h2{font-size:24px}
+  .cards-grid,.addons-row{grid-template-columns:1fr}
+  .features-inner{grid-template-columns:repeat(2,1fr)}
+  .steps-grid{grid-template-columns:1fr}
+  .steps-grid::before{display:none}
+  .testimonials-grid{grid-template-columns:1fr}
+  .results-metrics{grid-template-columns:repeat(2,1fr)}
+  .zen-steps{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .roi-grid{grid-template-columns:1fr}
+  .services,.how-it-works,.results,.cta-banner,.industry-selector,.zen-works,.about,.faq,.roi-calculator{padding:60px 20px}
+  .feature-strip{padding:48px 20px}
+  footer{padding:40px 20px 80px}
+  .footer-top{flex-direction:column}
+  .footer-cols{flex-direction:column;gap:32px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .cta-banner h2{font-size:24px}
+  .revenue-alert h2{font-size:24px}
+  .roi-header h2{font-size:24px}
+  .map-container{height:300px}
+  .map-overlay{position:relative;bottom:auto;left:auto;margin:16px;max-width:none}
+  .announcement-bar{padding:8px 16px;gap:8px}
+  .announcement-bar .ann-text,.announcement-bar a{font-size:11px}
+  .scroll-top{bottom:76px}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <span class="ann-stars">★★★★★</span>
+  <span class="ann-text">Trusted by 52+ Companies Worldwide</span>
+  <span class="ann-sep">·</span>
+  <a href="mailto:hello@zenvaio.com">Book a Free Strategy Call →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="assets/logo.png" alt="Zenvaio" class="nav-logo-img" onerror="this.style.display='none';document.getElementById('navWordmark').style.display='inline'">
+    <span class="nav-logo-wordmark" id="navWordmark" style="display:none">ZEN<span>V</span>AIO</span>
+  </a>
+  <div class="nav-center">
+    <div class="nav-item">
+      <span class="nav-link">Services <span class="chevron"></span></span>
+      <div class="dropdown">
+        <a href="#services" class="dropdown-item"><div class="dropdown-icon">🤖</div><div class="dropdown-text"><h4>AI Front Desk</h4><p>24/7 AI voice &amp; chat agent</p></div></a>
+        <a href="#services" class="dropdown-item"><div class="dropdown-icon">⚡</div><div class="dropdown-text"><h4>Instant Lead Response</h4><p>Contact leads within 60 seconds</p></div></a>
+        <a href="#services" class="dropdown-item"><div class="dropdown-icon">📅</div><div class="dropdown-text"><h4>Appointment Booking</h4><p>End-to-end scheduling automation</p></div></a>
+        <a href="#services" class="dropdown-item"><div class="dropdown-icon">🔄</div><div class="dropdown-text"><h4>Client Reactivation</h4><p>Re-engage dormant clients</p></div></a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-link">How It Works <span class="chevron"></span></span>
+      <div class="dropdown">
+        <a href="#how-it-works" class="dropdown-item"><div class="dropdown-icon">📞</div><div class="dropdown-text"><h4>Strategy Call</h4><p>Map your current flow &amp; gaps</p></div></a>
+        <a href="#how-it-works" class="dropdown-item"><div class="dropdown-icon">🔧</div><div class="dropdown-text"><h4>We Build &amp; Test</h4><p>Full system in 14 days</p></div></a>
+        <a href="#how-it-works" class="dropdown-item"><div class="dropdown-icon">🚀</div><div class="dropdown-text"><h4>Go Live &amp; Scale</h4><p>Monitor, optimise &amp; grow</p></div></a>
+      </div>
+    </div>
+    <a href="#results" class="nav-link">Results</a>
+    <a href="#roi-calculator" class="nav-link">ROI Calculator</a>
+    <a href="mailto:hello@zenvaio.com" class="nav-link">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="mailto:hello@zenvaio.com" class="nav-cta">Book a Free Strategy Call</a>
+  </div>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-btn" onclick="toggleMobileNav()">×</button>
+  <a href="#services" onclick="toggleMobileNav()">Services</a>
+  <a href="#how-it-works" onclick="toggleMobileNav()">How It Works</a>
+  <a href="#results" onclick="toggleMobileNav()">Results</a>
+  <a href="#roi-calculator" onclick="toggleMobileNav()">ROI Calculator</a>
+  <a href="mailto:hello@zenvaio.com" onclick="toggleMobileNav()">Contact</a>
+  <a href="mailto:hello@zenvaio.com" class="nav-cta" style="margin-top:16px" onclick="toggleMobileNav()">Book a Free Strategy Call</a>
+</div>
+
+<!-- 01 HERO -->
+<section class="hero" id="hero">
+  <div class="hero-badge"><span class="pulse-dot"></span>DONE-FOR-YOU AI AUTOMATION SYSTEMS</div>
+  <h1>Stop Working In Your Business.<br><span class="accent">Start Working On It.</span></h1>
+  <p class="hero-sub">Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you focus on the work you love.</p>
+  <div class="hero-btns">
+    <a href="mailto:hello@zenvaio.com" class="btn-primary">Book a Free Strategy Call</a>
+    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-number">60s</div><div class="stat-label">Lead Response</div></div>
+    <div class="stat-item"><div class="stat-number">14</div><div class="stat-label">Days to Go Live</div></div>
+    <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">AI Coverage</div></div>
+    <div class="stat-item"><div class="stat-number">10–25%</div><div class="stat-label">Lapsed Clients Recovered</div></div>
+  </div>
+</section>
+
+<!-- TRUSTED BAR -->
+<section class="trusted-bar">
+  <div class="trusted-label">Trusted by 52+ Companies Worldwide</div>
+  <div class="stars-row">
+    <span class="gold-star">★</span><span class="gold-star">★</span><span class="gold-star">★</span><span class="gold-star">★</span><span class="gold-star">★</span>
+  </div>
+  <div class="trusted-text">Five-Star Rated on Every Platform</div>
+</section>
+
+<!-- LOGO TICKER -->
+<section class="ticker-section">
+  <div class="ticker-label">POWERED BY &amp; INTEGRATES WITH 40+ TOOLS</div>
+  <div class="ticker-track"><div class="ticker-row" id="tickerRow1"></div></div>
+  <div class="ticker-track"><div class="ticker-row ticker-row-2" id="tickerRow2"></div></div>
+</section>
+
+<!-- 02 REVENUE ALERT -->
+<section class="revenue-alert">
+  <h2>Revenue Alert: How Much Are You Losing?</h2>
+  <p>Most businesses lose 67% of potential sales to slow response times. See exactly what you are leaving on the table.</p>
+  <div class="revenue-stats">
+    <div class="revenue-stat"><div class="revenue-stat-number">62%</div><div class="revenue-stat-label">of calls to SMEs go unanswered</div></div>
+    <div class="revenue-stat"><div class="revenue-stat-number">47h</div><div class="revenue-stat-label">average lead response time</div></div>
+    <div class="revenue-stat"><div class="revenue-stat-number">67%</div><div class="revenue-stat-label">of potential sales lost to delays</div></div>
+  </div>
+  <a href="#roi-calculator" class="btn-primary">Show Me My Lost Revenue →</a>
+</section>
+
+<!-- 03 ZEN LIVE DEMO -->
+<section class="ai-demo" id="zen-demo">
+  <div class="ai-demo-label">EXPERIENCE ZENVAIO INTELLIGENCE</div>
+  <h2>No Robotic Voices. Pure Human-Like Sales Intelligence.</h2>
+  <p class="ai-demo-sub">Meet Zen — your 24/7 AI sales agent. Click the orb below and have a real conversation. Zen will qualify you, answer questions, and book a call — live, right now.</p>
+  <div class="zen-orb-wrapper">
+    <iframe
+      src="https://agent.retellai.com/orb/agent_31af81666a9b52deb6af77467c?token=b1f83175a08dd1600051d56da497d45d"
+      allow="microphone"
+      style="border:none;width:120px;height:120px;border-radius:50%;"
+      id="zenOrbFrame"
+    ></iframe>
+    <p class="zen-orb-label">Zen — Zenvaio AI Agent · Ready</p>
+    <p class="zen-orb-hint">Tap the orb to start · Best on Chrome or Safari · Allow microphone when prompted</p>
+  </div>
+</section>
+
+<!-- 04 SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">OUR SERVICES</div>
+  <h2 class="section-title">Four Systems. Zero Manual Work.</h2>
+  <p class="section-sub">Every system is built, tested, and managed by Zenvaio — you just show up to the calls.</p>
+  <div class="cards-grid">
+    <div class="service-card reveal">
+      <div class="card-header"><div class="card-icon">🤖</div><div class="card-title-wrap"><h3>AI Front Desk</h3><div class="card-tags"><span class="card-tag">STARTER</span><span class="card-tag">GROWTH</span><span class="card-tag">FULL STACK</span></div></div></div>
+      <p class="card-body">Replaces your front desk with a 24/7 AI voice and chat agent that answers calls, handles FAQs, qualifies leads, and logs everything to your CRM automatically.</p>
+      <ul class="card-bullets"><li>Custom AI voice agent (branded persona)</li><li>Handles inbound calls after hours &amp; peak times</li><li>AI chat widget for your website</li><li>Every call logged to CRM with transcript</li><li>Instant SMS/email alert to business owner</li></ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-header"><div class="card-icon">⚡</div><div class="card-title-wrap"><h3>Instant Lead Response</h3><div class="card-tags"><span class="card-tag">GROWTH</span><span class="card-tag">FULL STACK</span></div></div></div>
+      <p class="card-body">Every new lead — from ads, forms, or missed calls — is contacted within 60 seconds via SMS and AI voice call. Eliminates lead decay and beats your competition.</p>
+      <ul class="card-bullets"><li>Connects to Facebook Ads, Google Ads, forms</li><li>Personalised SMS within 60 seconds of entry</li><li>Outbound AI voice call if no response in 5 min</li><li>5-email nurture sequence triggered automatically</li><li>Hot lead scoring &amp; instant sales owner alert</li></ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-header"><div class="card-icon">📅</div><div class="card-title-wrap"><h3>Appointment Booking Automation</h3><div class="card-tags"><span class="card-tag">STARTER</span><span class="card-tag">GROWTH</span><span class="card-tag">FULL STACK</span></div></div></div>
+      <p class="card-body">End-to-end automation of your entire scheduling process — from first contact to confirmed booking, reminders, no-show recovery, and post-appointment follow-up.</p>
+      <ul class="card-bullets"><li>AI booking agent via voice or chat</li><li>Automated reminders at 48hr &amp; 2hr before</li><li>No-show recovery SMS with one-tap reschedule</li><li>Post-appointment review request (Google)</li><li>Syncs with Google Calendar &amp; Outlook</li></ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="card-header"><div class="card-icon">🔄</div><div class="card-title-wrap"><h3>Dormant Client Reactivation</h3><div class="card-tags"><span class="card-tag">FULL STACK</span><span class="card-tag">ADD-ON</span></div></div></div>
+      <p class="card-body">Automatically re-engages past clients who have gone quiet — turning cold contacts into active revenue. Typically recovers 10–25% of lapsed clients with zero manual outreach.</p>
+      <ul class="card-bullets"><li>Segments client list by recency &amp; spend tier</li><li>Personalised email &amp; SMS reactivation sequences</li><li>Outbound AI voice calls for high-value clients</li><li>Dynamic offer engine (discounts, bonuses)</li><li>Re-entry routing back into your pipeline</li></ul>
+    </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="addons-row">
+    <div class="addon-card reveal">
+      <div class="addon-icon">⭐</div>
+      <div class="addon-body">
+        <div class="addon-badge">Available on All Plans</div>
+        <h4>Google Review Generation</h4>
+        <p>After every completed appointment, an automated SMS or email requests a Google review — building your reputation on autopilot. No manual follow-up ever needed.</p>
+      </div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">🛠️</div>
+      <div class="addon-body">
+        <div class="addon-badge">Enterprise &amp; Custom</div>
+        <h4>Custom Automations</h4>
+        <p>Need something bespoke? We build fully custom automation workflows tailored to your exact business process. Tell us what you need — we will build it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<section class="feature-strip">
+  <div class="features-inner">
+    <div class="feature-item reveal"><span class="feature-emoji">🎯</span><h4>Built for Your Business</h4><p>Every automation is custom-configured to match your industry, workflow, and goals.</p></div>
+    <div class="feature-item reveal"><span class="feature-emoji">🔒</span><h4>Fully Managed</h4><p>We monitor, optimise, and maintain your systems — no technical knowledge required.</p></div>
+    <div class="feature-item reveal"><span class="feature-emoji">⚙️</span><h4>Seamless Integrations</h4><p>Connects with your existing CRM, calendar, and marketing tools out of the box.</p></div>
+    <div class="feature-item reveal"><span class="feature-emoji">📊</span><h4>Measurable ROI</h4><p>Track leads recovered, bookings made, and revenue generated — all in one dashboard.</p></div>
+  </div>
+</section>
+
+<!-- 05 HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-label">THE PROCESS</div>
+  <h2 class="section-title">Up and Running in 14 Days</h2>
+  <p class="section-sub">We handle the entire build — you do not need to touch a single tool.</p>
+  <div class="steps-grid">
+    <div class="step reveal"><div class="step-circle">01</div><h3>Strategy Call</h3><p>We map your current lead and booking flow, identify the gaps, and design your custom automation system.</p></div>
+    <div class="step reveal"><div class="step-circle">02</div><h3>We Build &amp; Test</h3><p>Zenvaio configures your AI voice agent, CRM integrations, and automation workflows — all fully tested before launch.</p></div>
+    <div class="step reveal"><div class="step-circle">03</div><h3>Go Live &amp; Scale</h3><p>Your system launches. We monitor performance, optimise monthly, and scale as your business grows.</p></div>
+  </div>
+</section>
+
+<!-- 06 HOW ZEN WORKS -->
+<section class="zen-works">
+  <div class="section-label">HOW ZEN WORKS</div>
+  <h2 class="section-title">From Lead to Booked Appointment in Minutes</h2>
+  <p class="section-sub">Not days. Zen handles the entire journey automatically.</p>
+  <div class="zen-steps">
+    <div class="zen-step reveal"><div class="zen-step-number">01</div><h4>Lead Submits</h4><p>A prospect fills out your form, clicks an ad, or enters your funnel. Zen is instantly notified.</p></div>
+    <div class="zen-step reveal"><div class="zen-step-number">02</div><h4>Zen Calls</h4><p>Within 30 seconds, Zen calls your lead with a natural, human-like voice conversation.</p></div>
+    <div class="zen-step reveal"><div class="zen-step-number">03</div><h4>Qualifies Lead</h4><p>Zen asks your custom qualifying questions, handles objections, and gauges interest level.</p></div>
+    <div class="zen-step reveal"><div class="zen-step-number">04</div><h4>Books Appointment</h4><p>Qualified leads are instantly booked into your calendar. You only talk to ready-to-buy prospects.</p></div>
+  </div>
+</section>
+
+<!-- 07 INDUSTRY SELECTOR -->
+<section class="industry-selector" id="industry-selector">
+  <div class="section-label">BUILT FOR EVERY INDUSTRY</div>
+  <h2 class="section-title">Experience Zen in Action</h2>
+  <p class="section-sub">Select your industry below and see how Zen engages leads and books appointments automatically.</p>
+  <div class="industry-tabs">
+    <button class="industry-tab active" onclick="selectIndustry(this,'Real Estate')">Real Estate</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Mortgage Lending')">Mortgage Lending</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Digital Marketing')">Digital Marketing</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Home Services')">Home Services</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Pet Services')">Pet Services</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Event Services')">Event Services</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Healthcare')">Healthcare</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Legal Services')">Legal Services</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'Automotive')">Automotive</button>
+    <button class="industry-tab" onclick="selectIndustry(this,'E-commerce')">E-commerce</button>
+  </div>
+  <div class="industry-content">
+    <h3>Get a Call from Zen</h3>
+    <p class="selected-industry" id="selectedIndustry">Selected: Real Estate — Instant lead response for realtors and agencies</p>
+    <div class="form-group"><label>First Name <span>*</span></label><input type="text" placeholder="Enter your first name"></div>
+    <div class="form-group"><label>Last Name <span>*</span></label><input type="text" placeholder="Enter your last name"></div>
+    <div class="form-group"><label>Phone Number <span>*</span></label><input type="tel" placeholder="Enter your phone number"></div>
+    <div class="form-group"><label>Email Address <span>*</span></label><input type="email" placeholder="Enter your email address"></div>
+    <button class="form-submit" onclick="alert('Thank you! Zen will call you shortly. Check your phone.')">Get a Call from Zen</button>
+    <p class="form-disclaimer">By submitting, you agree to receive a call from our AI Assistant.</p>
+  </div>
+</section>
+
+<!-- 08 RESULTS / TESTIMONIALS -->
+<section class="results" id="results">
+  <div class="section-label">RESULTS</div>
+  <h2 class="section-title">Businesses Growing With Zenvaio</h2>
+  <p class="section-sub">Real outcomes from real business owners who let AI handle the workload.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"We went from missing half our leads to booking 3x more appointments in the first month. The AI front desk answers calls we could not — at 2am, on weekends, all of it."</p>
+      <div class="testimonial-author"><div class="author-avatar">👨‍💼</div><div><div class="author-name">Marcus T.</div><div class="author-role">Dental Practice Owner</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"The 60-second lead response alone changed everything. We were losing clients to competitors because we called back too late. Not anymore. Worth every penny."</p>
+      <div class="testimonial-author"><div class="author-avatar">👩‍💼</div><div><div class="author-name">Sarah K.</div><div class="author-role">Real Estate Agency</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"The reactivation campaign brought back 18 clients we thought were gone forever. That is over $24k in recovered revenue in 6 weeks. Zenvaio paid for itself 8x over."</p>
+      <div class="testimonial-author"><div class="author-avatar">🧔</div><div><div class="author-name">James O.</div><div class="author-role">Fitness Studio Owner</div></div></div>
+    </div>
+  </div>
+  <div class="rotating-testimonials">
+    <div class="rotating-card active" data-index="0">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"Zen transformed our lead response time. We went from 47 hours to under 30 seconds. Our conversion rate doubled in the first month!"</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:11px">MT</div><div><div class="author-name">Michael Thompson</div><div class="author-role">Real Estate Broker — Chicago, IL</div></div></div>
+    </div>
+    <div class="rotating-card" data-index="1">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"Healthcare runs 24/7 and so does Zen. Our after-hours patient bookings increased by 300%. I can finally sleep without missing calls."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:10px">DSJ</div><div><div class="author-name">Dr. Sarah Johnson</div><div class="author-role">Medical Practice Owner — Atlanta, GA</div></div></div>
+    </div>
+    <div class="rotating-card" data-index="2">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"In lending, speed is everything. Zen calls our leads back instantly. We have closed $15M more in loans since implementing Zen."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:12px">DK</div><div><div class="author-name">David Kim</div><div class="author-role">Mortgage Lender — Los Angeles, CA</div></div></div>
+    </div>
+    <div class="rotating-card" data-index="3">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"My agency handles 50+ clients. Zen qualifies every lead before it reaches me. I only talk to serious buyers now. Game changer."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:12px">PP</div><div><div class="author-name">Priya Patel</div><div class="author-role">Digital Marketing Agency — New York, NY</div></div></div>
+    </div>
+    <div class="rotating-card" data-index="4">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"Car buyers call multiple dealerships. Zen calls them back in under 30 seconds. We are FIRST every time. Sales up 40%."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:12px">AH</div><div><div class="author-name">Ahmed Hassan</div><div class="author-role">Auto Dealership Owner — Detroit, MI</div></div></div>
+    </div>
+    <div class="rotating-card" data-index="5">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-quote">"Plumbing emergencies cannot wait. Zen answers every call at 2 AM. We have grown from 3 to 12 trucks in 8 months."</p>
+      <div class="testimonial-author"><div class="author-avatar" style="background:var(--pale-teal);color:var(--teal);font-weight:800;font-size:12px">CM</div><div><div class="author-name">Carlos Mendez</div><div class="author-role">Home Services Owner — Miami, FL</div></div></div>
+    </div>
+    <div class="rotating-dots">
+      <span class="rotating-dot active" onclick="goToTestimonial(0)"></span>
+      <span class="rotating-dot" onclick="goToTestimonial(1)"></span>
+      <span class="rotating-dot" onclick="goToTestimonial(2)"></span>
+      <span class="rotating-dot" onclick="goToTestimonial(3)"></span>
+      <span class="rotating-dot" onclick="goToTestimonial(4)"></span>
+      <span class="rotating-dot" onclick="goToTestimonial(5)"></span>
+    </div>
+  </div>
+  <div class="results-metrics">
+    <div class="metric-card reveal"><span class="metric-number">3×</span><span class="metric-label">More appointments booked</span></div>
+    <div class="metric-card reveal"><span class="metric-number">60s</span><span class="metric-label">Average lead response time</span></div>
+    <div class="metric-card reveal"><span class="metric-number">18%</span><span class="metric-label">Average lapsed clients recovered</span></div>
+    <div class="metric-card reveal"><span class="metric-number">14d</span><span class="metric-label">From strategy call to live system</span></div>
+  </div>
+</section>
+
+<!-- 09 ROI CALCULATOR -->
+<section class="roi-calculator" id="roi-calculator">
+  <div class="roi-header">
+    <div class="section-label">ROI CALCULATOR</div>
+    <h2>See How Much Revenue You Are Leaving on the Table</h2>
+    <p>Enter your numbers below to see the impact of an AI agent that answers 100% of your calls.</p>
+  </div>
+  <div class="roi-container">
+    <div class="roi-grid">
+      <div class="roi-inputs">
+        <h3>Your Current Numbers</h3>
+        <div class="roi-field"><label>Total Monthly Calls</label><input type="range" id="monthlyCalls" min="100" max="10000" value="1000" step="100" oninput="updateROI()"><div class="roi-value"><span>100</span><span class="current" id="monthlyCallsVal">1,000</span><span>10,000</span></div></div>
+        <div class="roi-field"><label>Missed Call Rate</label><input type="range" id="missedRate" min="1" max="60" value="15" step="1" oninput="updateROI()"><div class="roi-value"><span>1%</span><span class="current" id="missedRateVal">15%</span><span>60%</span></div></div>
+        <div class="roi-field"><label>Conversion Rate</label><input type="range" id="conversionRate" min="1" max="60" value="20" step="1" oninput="updateROI()"><div class="roi-value"><span>1%</span><span class="current" id="conversionRateVal">20%</span><span>60%</span></div></div>
+        <div class="roi-field"><label>Avg. Customer Value</label><input type="range" id="customerValue" min="50" max="10000" value="500" step="50" oninput="updateROI()"><div class="roi-value"><span>$50</span><span class="current" id="customerValueVal">$500</span><span>$10,000</span></div></div>
+      </div>
+      <div class="roi-results">
+        <h3>Your Results</h3>
+        <div class="roi-result-row"><span class="roi-result-label">Missed Calls / Month</span><span class="roi-result-value" id="missedPerMonth">150</span></div>
+        <div class="roi-result-row"><span class="roi-result-label">Lost Conversions / Month</span><span class="roi-result-value" id="lostConversions">30</span></div>
+        <div class="roi-result-row"><span class="roi-result-label">Revenue Lost / Month</span><span class="roi-result-value large highlight" id="revenueLost">$15,000</span></div>
+        <div class="roi-yearly">
+          <div class="roi-yearly-label">Additional Revenue with Zenvaio</div>
+          <div class="roi-yearly-value" id="yearlyRevenue">+$15,000/mo</div>
+          <div class="roi-yearly-label" id="yearlyLabel" style="margin-top:4px">$180,000 / year</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="mailto:hello@zenvaio.com" class="btn-primary">Book a Free Strategy Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 ABOUT -->
+<section class="about">
+  <div class="section-label">ABOUT ZENVAIO</div>
+  <h2 class="section-title">Building AI Systems That Make Your Business Faster</h2>
+  <p class="section-sub">More responsive. More profitable. That is the Zenvaio promise.</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>Our Mission</h3>
+      <p>At Zenvaio, we develop cutting-edge voice AI solutions that transform how businesses handle their most critical moment — the first touchpoint with potential customers. We specialise in creating conversational AI that captures leads at their peak interest and engages them instantly, ensuring no opportunity slips through the cracks.</p>
+      <p>Rather than replacing your team, our solutions enhance your sales process by handling the repetitive tasks of immediate follow-up and lead qualification.</p>
+      <h3 style="margin-top:24px">Our Vision</h3>
+      <p>To become the go-to AI automation partner for SMEs across North America — known for delivering measurable, real-world results through smart automation that feels human.</p>
+      <div class="about-values">
+        <div class="about-value"><h4>Results Over Promises</h4><p>We measure success by the revenue and time our clients get back.</p></div>
+        <div class="about-value"><h4>Simplicity for the Client</h4><p>Our clients are business owners, not tech experts. We handle the complexity.</p></div>
+        <div class="about-value"><h4>Speed That Matters</h4><p>In business, the first to respond wins. We build systems that respond in seconds.</p></div>
+        <div class="about-value"><h4>Continuous Improvement</h4><p>AI moves fast. We stay ahead so our clients do not have to.</p></div>
+      </div>
+    </div>
+    <div class="about-founder">
+      <div class="founder-header">
+        <div class="founder-avatar">F</div>
+        <div class="founder-info"><h4>Fahima</h4><p>Founder &amp; CEO</p></div>
+      </div>
+      <p class="founder-quote">"Fahima founded Zenvaio with a mission to help small and medium businesses compete with enterprise-level lead response. Her vision: AI that works for you 24/7, so you never miss an opportunity again."</p>
+      <p class="founder-quote" style="margin-top:16px">"We build and run the AI systems that make your business faster, more responsive, and more profitable — so you can focus on what you do best."</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.57268578046!2d-79.51814089428225!3d43.71815566213007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="map-overlay">
+      <h4>Zenvaio Headquarters</h4>
+      <p>Toronto, Ontario, Canada<br><a href="mailto:hello@zenvaio.com" style="color:var(--teal)">hello@zenvaio.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 FAQ -->
+<section class="faq">
+  <div class="section-label">FREQUENTLY ASKED QUESTIONS</div>
+  <h2 class="section-title">Everything You Need to Know</h2>
+  <p class="section-sub">Clear answers before you book your free strategy call.</p>
+  <div class="faq-container">
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">How do you customize the solution for my business?</div><div class="faq-answer"><p>We start with a strategy call to understand your business, workflows, and goals. Then we configure your AI agent with your brand voice, qualifying questions, and integration requirements.</p></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">What is the typical implementation timeline?</div><div class="faq-answer"><p>Most systems go live within 14 days. Complex integrations may take up to 21 days. We handle all the technical setup and testing — you just show up for the kickoff call.</p></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Do you support multiple languages?</div><div class="faq-answer"><p>Yes. Zen supports English, Spanish, French, and Mandarin. Additional languages available on request for Full Stack clients.</p></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">What if my business has unique integration needs?</div><div class="faq-answer"><p>We integrate with 50+ tools including HubSpot, Salesforce, Zoho, Pipedrive, Monday, Calendly, and custom APIs. If we do not have it built, we will build it.</p></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">Can Zen transfer calls to a real person?</div><div class="faq-answer"><p>Absolutely. Zen can warm-transfer qualified leads to your sales team, or escalate urgent calls based on your custom rules.</p></div></div>
+    <div class="faq-item"><div class="faq-question" onclick="toggleFAQ(this)">How does billing work?</div><div class="faq-answer"><p>Simple monthly billing with no hidden fees. Starter plans are month-to-month. Growth and Full Stack plans offer annual discounts.</p></div></div>
+  </div>
+</section>
+
+<!-- 12 FINAL CTA -->
+<section class="cta-banner">
+  <h2>Ready to Stop Losing Leads and Start Growing?</h2>
+  <p>Book a free 30-minute strategy call. We will map out a custom automation system built around your specific business. Join 52+ companies already using Zen.</p>
+  <a href="mailto:hello@zenvaio.com" class="btn-dark">Book Your Free Strategy Call →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo-wrap">
+        <img src="assets/logo.png" alt="Zenvaio" class="footer-logo-img" onerror="this.style.display='none';document.getElementById('footerWordmark').style.display='inline'">
+        <span class="footer-wordmark" id="footerWordmark" style="display:none">ZEN<span>V</span>AIO</span>
+      </a>
+      <p>AI-powered automation systems designed and managed for growing businesses.</p>
+      <div class="footer-contact-info">
+        <p><a href="mailto:hello@zenvaio.com">hello@zenvaio.com</a></p>
+        <p>Toronto, Ontario, Canada</p>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">AI Front Desk</a>
+        <a href="#services">Instant Lead Response</a>
+        <a href="#services">Appointment Booking</a>
+        <a href="#services">Client Reactivation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#results">Results</a>
+        <a href="#roi-calculator">ROI Calculator</a>
+        <a href="mailto:hello@zenvaio.com">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="#industry-selector">Real Estate</a>
+        <a href="#industry-selector">Healthcare</a>
+        <a href="#industry-selector">Home Services</a>
+        <a href="#industry-selector">Mortgage Lending</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Zenvaio. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="mailto:hello@zenvaio.com">hello@zenvaio.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky-cta" id="mobileStickyBtn">
+  <a href="mailto:hello@zenvaio.com">Book a Free Strategy Call →</a>
+</div>
+
+<script>
+// ---- TICKER DATA ----
+const ROW1 = [
+  {name:'HubSpot',color:'#FF7A59',abbr:'HS'},{name:'Salesforce',color:'#00A1E0',abbr:'SF'},
+  {name:'Zoho CRM',color:'#E42527',abbr:'ZH'},{name:'Pipedrive',color:'#263850',abbr:'PD'},
+  {name:'GoHighLevel',color:'#00BF6F',abbr:'GHL'},{name:'Monday.com',color:'#FF3D57',abbr:'MN'},
+  {name:'Google Calendar',color:'#4285F4',abbr:'GC'},{name:'Outlook',color:'#0078D4',abbr:'OL'},
+  {name:'Calendly',color:'#006BFF',abbr:'CL'},{name:'Cal.com',color:'#111827',abbr:'CA'},
+  {name:'Acuity',color:'#4F46E5',abbr:'AC'},{name:'Twilio',color:'#F22F46',abbr:'TW'},
+  {name:'WhatsApp',color:'#25D366',abbr:'WA'},{name:'Slack',color:'#4A154B',abbr:'SL'},
+  {name:'Gmail',color:'#EA4335',abbr:'GM'},{name:'FB Messenger',color:'#0084FF',abbr:'FM'},
+  {name:'Mailchimp',color:'#FFE01B',abbr:'MC'},{name:'ActiveCampaign',color:'#356AE6',abbr:'AC'},
+  {name:'Klaviyo',color:'#1D1D1D',abbr:'KL'},{name:'Brevo',color:'#0092FF',abbr:'BR'},
+];
+const ROW2 = [
+  {name:'ConvertKit',color:'#FB6970',abbr:'CK'},{name:'Meta Ads',color:'#1877F2',abbr:'FB'},
+  {name:'Google Ads',color:'#4285F4',abbr:'GA'},{name:'TikTok Ads',color:'#010101',abbr:'TT'},
+  {name:'LinkedIn',color:'#0A66C2',abbr:'LI'},{name:'Typeform',color:'#262627',abbr:'TF'},
+  {name:'Jotform',color:'#FF6100',abbr:'JF'},{name:'Google Forms',color:'#7248B9',abbr:'GF'},
+  {name:'Google Sheets',color:'#34A853',abbr:'GS'},{name:'Airtable',color:'#18BFFF',abbr:'AT'},
+  {name:'Notion',color:'#2D2D2D',abbr:'NO'},{name:'Microsoft 365',color:'#D83B01',abbr:'MS'},
+  {name:'Stripe',color:'#635BFF',abbr:'ST'},{name:'Square',color:'#3E4348',abbr:'SQ'},
+  {name:'PayPal',color:'#003087',abbr:'PP'},{name:'OpenAI',color:'#10A37F',abbr:'AI'},
+  {name:'Retell AI',color:'#6366F1',abbr:'RA'},{name:'WordPress',color:'#21759B',abbr:'WP'},
+  {name:'Webflow',color:'#146EF5',abbr:'WF'},{name:'Wix',color:'#FAAD00',abbr:'WX'},
+];
+
+function buildTicker(logos, id) {
+  const el = document.getElementById(id);
+  const all = [...logos, ...logos];
+  el.innerHTML = all.map(l =>
+    `<div class="ticker-item"><div class="ticker-icon" style="background:${l.color}">${l.abbr}</div><span class="ticker-name">${l.name}</span></div>`
+  ).join('');
+}
+buildTicker(ROW1, 'tickerRow1');
+buildTicker(ROW2, 'tickerRow2');
+
+// ---- MOBILE NAV ----
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('active');
+}
+
+// ---- SCROLL REVEAL ----
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// ---- SCROLL TO TOP ----
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+  // Mobile sticky CTA — show after scrolling past hero
+  const heroBottom = document.getElementById('hero').getBoundingClientRect().bottom;
+  document.getElementById('mobileStickyBtn').classList.toggle('show', heroBottom < 0);
+});
+
+// ---- ROTATING TESTIMONIALS ----
+let currentT = 0;
+const tCards = document.querySelectorAll('.rotating-card');
+const tDots = document.querySelectorAll('.rotating-dot');
+function goToTestimonial(i) {
+  tCards.forEach(c => c.classList.remove('active'));
+  tDots.forEach(d => d.classList.remove('active'));
+  tCards[i].classList.add('active');
+  tDots[i].classList.add('active');
+  currentT = i;
+}
+setInterval(() => { currentT = (currentT + 1) % tCards.length; goToTestimonial(currentT); }, 5000);
+
+// ---- INDUSTRY SELECTOR ----
+function selectIndustry(btn, industry) {
+  document.querySelectorAll('.industry-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('selectedIndustry').textContent = 'Selected: ' + industry;
+}
+
+// ---- ROI CALCULATOR ----
+function updateROI() {
+  const calls = parseInt(document.getElementById('monthlyCalls').value);
+  const missed = parseInt(document.getElementById('missedRate').value);
+  const conv = parseInt(document.getElementById('conversionRate').value);
+  const val = parseInt(document.getElementById('customerValue').value);
+  document.getElementById('monthlyCallsVal').textContent = calls.toLocaleString();
+  document.getElementById('missedRateVal').textContent = missed + '%';
+  document.getElementById('conversionRateVal').textContent = conv + '%';
+  document.getElementById('customerValueVal').textContent = '$' + val.toLocaleString();
+  const missedNum = Math.round(calls * missed / 100);
+  const lostConv = Math.round(missedNum * conv / 100);
+  const revLost = lostConv * val;
+  const yearly = revLost * 12;
+  document.getElementById('missedPerMonth').textContent = missedNum.toLocaleString();
+  document.getElementById('lostConversions').textContent = lostConv.toLocaleString();
+  document.getElementById('revenueLost').textContent = '$' + revLost.toLocaleString();
+  document.getElementById('yearlyRevenue').textContent = '+$' + revLost.toLocaleString() + '/mo';
+  document.getElementById('yearlyLabel').textContent = '$' + yearly.toLocaleString() + ' / year';
+}
+
+// ---- FAQ ----
+function toggleFAQ(el) { el.parentElement.classList.toggle('open'); }
+
+// ---- LOGO INIT ----
+// Show wordmark fallbacks if logo not found (handled by onerror inline)
+
+// Init
+updateROI();
+</script>
+</body>
+</html>
