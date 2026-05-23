@@ -7,10 +7,70 @@
 <meta name="description" content="Zenvaio designs and manages AI-powered automation systems tailored to your business — so every lead gets a response, every appointment gets booked, and you can focus on the work you love.">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0D1F2D;--navy-deep:#052535;--teal:#00C896;--teal-light:#00E8AE;--teal-dark:#009A72;--pale-teal:#E0FAF4;--teal-border:#C8EFE6;--page-green:#F0FAF7;--text-muted:#5A7A8A;--green-dark:#057A5A;--link-teal:#3A6070;--white:#FFFFFF;}
+:root {
+  --navy: #0D1F2D;
+  --navy-deep: #052535;
+  --teal: #00C896;
+  --teal-light: #00E8AE;
+  --teal-dark: #009A72;
+  --pale-teal: #1a3a2a;
+  --teal-border: #1a4a3a;
+  --page-green: #0a1a15;
+  --text-muted: #a0b8a8;
+  --green-dark: #00A86B;
+  --link-teal: #80e0c0;
+  --white: #FFFFFF;
+  --bg-dark: #0a0f0d;
+  --card-bg: #0d1813;
+  --hero-grad: linear-gradient(135deg, #0a0f0d 0%, #052535 100%);
+  --cta-grad: linear-gradient(135deg, #00C896 0%, #009A72 100%);
+  --font: 'Plus Jakarta Sans', sans-serif;
+}
+body { background: #0a0f0d; color: #e0f0e8; font-family: var(--font); overflow-x: hidden; }
+.hero { background: linear-gradient(135deg, #0a0f0d 0%, #0a1a15 100%); }
+.hero h1, .hero-sub { color: #ffffff; }
+.hero-badge { background: rgba(0,200,150,0.15); border-color: rgba(0,200,150,0.3); color: #00E8AE; }
+.trusted-bar, .revenue-alert, .services, .how-it-works, .zen-works, 
+.industry-selector, .results, .roi-calculator, .about, .faq { background: #0a0f0d; }
+.service-card, .testimonial-card, .metric-card, .plan-card, .roi-inputs, .roi-results,
+.industry-content, .addon-card, .faq-item, .trusted-bar, .revenue-alert { 
+  background: #0d1813; 
+  border-color: #1a4a3a; 
+  color: #e0f0e8;
+}
+.service-card h3, .card-title-wrap h3, .section-title, h2 { color: #ffffff; }
+.card-body, .card-bullets li, p, .step p, .zen-step p { color: #b0d0c0; }
+.section-label { color: #00C896; }
+.tag, .card-tag { background: #1a4a3a; color: #00E8AE; }
+.btn-primary { background: #00C896; color: #0a0f0d; }
+.btn-primary:hover { background: #00E8AE; }
+.btn-secondary { border-color: #00C896; color: #00C896; }
+.btn-secondary:hover { background: rgba(0,200,150,0.1); }
+.nav-center li > a, .nav-center li > button { color: rgba(255,255,255,0.8); }
+.nav-center li > a:hover, .nav-center li > button:hover { color: #00C896; }
+footer { background: #050a08; }
+.footer-col a { color: rgba(200,240,220,0.6); }
+.footer-col a:hover { color: #00C896; }
+.step-circle { background: #00C896; color: #0a0f0d; border-color: #00E8AE; }
+.zen-step-number { background: #00C896; color: #0a0f0d; }
+.rotating-card { background: #0d1813; border-color: #1a4a3a; }
+.map-overlay { background: #0d1813; border-color: #1a4a3a; }
+.map-overlay h4, .map-overlay p { color: #e0f0e8; }
+.announcement-bar { background: #00C896; color: #0a0f0d; }
+.announcement-bar a { color: #0a0f0d; font-weight: 800; }
+.trusted-text, .trusted-label { color: #a0d0b0; }
+.gold-star { color: #FFD700; }
+.roi-results { background: #0d1813; border-color: #1a4a3a; }
+.roi-result-label { color: #b0d0c0; }
+.roi-result-value { color: #00E8AE; }
+.feature-item h4 { color: #ffffff; }
+.feature-item p { color: #a0c0b0; }
+.sticky-mobile-cta { background: #00C896; }
+.sticky-mobile-cta a { color: #0a0f0d; }
+.scroll-top { background: #00C896; color: #0a0f0d; }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',Arial,sans-serif;color:var(--text-muted);background:var(--white);overflow-x:hidden}
+body { background: #0a0f0d; color: #e0f0e8; font-family: var(--font); overflow-x: hidden; }
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -126,7 +186,7 @@ nav{background:var(--navy);height:64px;padding:0 60px;position:sticky;top:0;z-in
 .card-title-wrap h3{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:8px}
 .card-tags{display:flex;gap:6px;flex-wrap:wrap}
 .card-tag{font-size:9px;font-weight:700;color:var(--green-dark);background:var(--pale-teal);padding:3px 10px;border-radius:99px;letter-spacing:1px;text-transform:uppercase}
-.card-body{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:16px}
+.card-body { background: #0a0f0d; color: #e0f0e8; font-family: var(--font); overflow-x: hidden; }
 .card-bullets{list-style:none;padding:0}
 .card-bullets li{padding-left:22px;position:relative;font-size:13px;color:var(--link-teal);line-height:1.5;margin-bottom:6px}
 .card-bullets li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
