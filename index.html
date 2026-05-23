@@ -101,11 +101,10 @@ nav{background:var(--navy);height:64px;padding:0 60px;position:sticky;top:0;z-in
 .revenue-stat-label{font-size:13px;color:var(--text-muted);margin-top:4px;font-weight:500}
 
 /* ZEN DEMO */
-.ai-demo{background:var(--navy);padding:90px 60px;text-align:center;position:relative;overflow:hidden}
-.ai-demo::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,200,150,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.ai-demo-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px}
-.ai-demo h2{font-size:34px;font-weight:800;color:var(--white);letter-spacing:-0.5px;margin-bottom:12px}
-.ai-demo-sub{font-size:16px;color:rgba(255,255,255,0.52);line-height:1.7;max-width:540px;margin:0 auto 48px}
+
+
+
+
 .zen-orb-wrapper{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;z-index:2}
 .zen-orb-label{font-size:13px;color:rgba(255,255,255,0.5);margin-top:8px}
 .zen-orb-hint{font-size:12px;color:rgba(255,255,255,0.30);margin-top:4px}
@@ -318,8 +317,7 @@ footer{background:var(--navy);padding:48px 60px 32px}
   .hero-stats{gap:28px}
   .ticker-section{padding:20px 0}
   .revenue-alert{padding:60px 20px}
-  .ai-demo{padding:60px 20px}
-  .ai-demo h2{font-size:24px}
+  
   .cards-grid,.addons-row{grid-template-columns:1fr}
   .features-inner{grid-template-columns:repeat(2,1fr)}
   .steps-grid{grid-template-columns:1fr}
@@ -449,21 +447,7 @@ footer{background:var(--navy);padding:48px 60px 32px}
 </section>
 
 <!-- 03 ZEN LIVE DEMO -->
-<section class="ai-demo" id="zen-demo">
-  <div class="ai-demo-label">EXPERIENCE ZENVAIO INTELLIGENCE</div>
-  <h2>No Robotic Voices. Pure Human-Like Sales Intelligence.</h2>
-  <p class="ai-demo-sub">Meet Zen — your 24/7 AI sales agent. Click the orb below and have a real conversation. Zen will qualify you, answer questions, and book a call — live, right now.</p>
-  <div class="zen-orb-wrapper">
-    <iframe
-      src="https://agent.retellai.com/orb/agent_31af81666a9b52deb6af77467c?token=b1f83175a08dd1600051d56da497d45d"
-      allow="microphone"
-      style="border:none;width:120px;height:120px;border-radius:50%;"
-      id="zenOrbFrame"
-    ></iframe>
-    <p class="zen-orb-label">Zen — Zenvaio AI Agent · Ready</p>
-    <p class="zen-orb-hint">Tap the orb to start · Best on Chrome or Safari · Allow microphone when prompted</p>
-  </div>
-</section>
+
 
 <!-- 04 SERVICES -->
 <section class="services" id="services">
@@ -829,7 +813,7 @@ const ROW2 = [
   {name:'Notion',color:'#2D2D2D',abbr:'NO'},{name:'Microsoft 365',color:'#D83B01',abbr:'MS'},
   {name:'Stripe',color:'#635BFF',abbr:'ST'},{name:'Square',color:'#3E4348',abbr:'SQ'},
   {name:'PayPal',color:'#003087',abbr:'PP'},{name:'OpenAI',color:'#10A37F',abbr:'AI'},
-  {name:'Retell AI',color:'#6366F1',abbr:'RA'},{name:'WordPress',color:'#21759B',abbr:'WP'},
+  ,{name:'WordPress',color:'#21759B',abbr:'WP'},
   {name:'Webflow',color:'#146EF5',abbr:'WF'},{name:'Wix',color:'#FAAD00',abbr:'WX'},
 ];
 
